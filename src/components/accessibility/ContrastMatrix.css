@@ -1,0 +1,41 @@
+.contrast-matrix {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.matrix-container {
+  margin-top: var(--spacing-md);
+}
+
+.contrast-matrix table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.contrast-matrix th,
+.contrast-matrix td {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-sm);
+  text-align: center;
+}
+
+.contrast-matrix th {
+  background-color: var(--color-surface);
+  font-weight: 500;
+}
+
+.color-sample {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  margin: 0 auto;
+  border: 1px solid var(--color-border);
+}
+
+.contrast-matrix td.pass {
+  background-color: rgba(76, 175, 80, 0.1); /* light green */
+}
+
+.contrast-matrix td.fail {
+  background-color: rgba(244, 67, 54, 0.1); /* light red */
+}

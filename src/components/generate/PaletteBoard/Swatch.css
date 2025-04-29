@@ -1,0 +1,117 @@
+.color-swatch {
+  position: relative;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 260px;
+  padding: 12px;
+}
+
+/* Size variants - keeping consistent height now */
+.color-swatch.small,
+.color-swatch.medium,
+.color-swatch.large {
+  height: 260px;
+}
+
+/* Hover effects */
+.color-swatch:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Locked state */
+.color-swatch.locked {
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-swatch.locked::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Toolbar at the top of swatch */
+.swatch-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 10;
+}
+
+.lock-button {
+  background: rgba(255, 255, 255, 0.7);
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.lock-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+/* Color information display with pill design */
+.swatch-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.color-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-family: monospace;
+  font-size: 13px;
+  margin: 2px 0;
+  max-width: fit-content;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hex-value {
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.hex-value:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .color-swatch {
+    height: 220px;
+    padding: 8px;
+  }
+  
+  .color-pill {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}

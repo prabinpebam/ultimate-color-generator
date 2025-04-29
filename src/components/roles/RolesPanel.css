@@ -1,0 +1,122 @@
+.roles-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-top-left-radius: var(--border-radius-lg);
+  border-top-right-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: height var(--transition-base);
+  z-index: var(--z-index-drawer);
+  overflow: hidden;
+}
+
+.roles-panel.open {
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background-color: var(--color-surface);
+  z-index: 1;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.close-button:hover {
+  background-color: var(--color-hover);
+}
+
+.panel-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.clear-button, .auto-assign-button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.clear-button {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.auto-assign-button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+}
+
+.roles-container {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.panel-footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.panel-hint {
+  margin: 0;
+}
+
+/* Media queries for responsive layout */
+@media (min-width: 768px) {
+  .roles-panel {
+    width: 50%;
+    max-width: 500px;
+    height: 100vh;
+    right: auto;
+    top: 0;
+    border-top: none;
+    border-right: 1px solid var(--color-border);
+    border-radius: 0;
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+  }
+  
+  .roles-panel.open {
+    height: 100vh;
+    transform: translateX(0);
+  }
+}
