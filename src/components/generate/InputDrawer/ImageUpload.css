@@ -1,13 +1,13 @@
 .image-upload {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-lg, 20px);
 }
 
 .image-preview-container {
   height: 200px;
-  border: 2px dashed var(--color-border);
-  border-radius: var(--border-radius-md);
+  border: 2px dashed var(--color-border, #e0e0e0);
+  border-radius: var(--border-radius-md, 8px);
   overflow: hidden;
 }
 
@@ -25,15 +25,15 @@
 
 .remove-image {
   position: absolute;
-  top: var(--spacing-sm);
-  right: var(--spacing-sm);
+  top: var(--spacing-sm, 8px);
+  right: var(--spacing-sm, 8px);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  border-radius: var(--border-radius-sm);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm, 4px);
+  padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
   cursor: pointer;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-sm, 14px);
 }
 
 .upload-placeholder {
@@ -44,17 +44,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--color-text-secondary);
+  color: var(--color-text-secondary, #757575);
 }
 
 .upload-icon {
-  font-size: 2rem;
-  margin-bottom: var(--spacing-sm);
+  font-size: 32px;
+  margin-bottom: var(--spacing-sm, 8px);
 }
 
 .upload-hint {
-  font-size: var(--font-size-xs);
-  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-xs, 12px);
+  margin-top: var(--spacing-xs, 4px);
 }
 
 .file-input {
@@ -64,24 +64,36 @@
 .color-count-selector {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-md, 16px);
 }
 
 .color-count-selector label {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-sm, 14px);
+}
+
+.color-count-selector select {
+  padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+  border-radius: var(--border-radius-sm, 4px);
+  border: 1px solid var(--color-border, #e0e0e0);
 }
 
 .generate-button {
-  margin-top: var(--spacing-md);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--color-primary);
+  margin-top: var(--spacing-md, 16px);
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+  background-color: var(--color-primary, #1a73e8);
   color: white;
   border: none;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-sm, 4px);
   cursor: pointer;
+  font-weight: 500;
+  transition: background-color var(--transition-fast, 0.2s);
+}
+
+.generate-button:hover {
+  background-color: var(--color-primary-dark, #0d47a1);
 }
 
 .generate-button:disabled {
-  background-color: var(--color-disabled);
+  background-color: var(--color-disabled, #c5c5c5);
   cursor: not-allowed;
 }

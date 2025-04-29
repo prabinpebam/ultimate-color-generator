@@ -3,20 +3,24 @@ import { usePalette } from '../../../hooks/usePalette'
 import { SEMANTIC_MAPPINGS } from '../../../algorithms/generation/semantic'
 import './SemanticInput.css'
 
-const SemanticInput = () => {
+interface SemanticInputProps {
+  onClose: () => void;
+}
+
+const SemanticInput: React.FC<SemanticInputProps> = ({ onClose }) => {
   const { generatePalette } = usePalette()
   const [selectedTerms, setSelectedTerms] = useState<string[]>([])
-  
+
   // Get available semantic terms from the mappings
   const availableTerms = Object.keys(SEMANTIC_MAPPINGS).sort()
-  
+
   // Group terms by category for better organization
   const termCategories = {
     'Mood/Tone': ['calm', 'energetic', 'professional', 'vibrant', 'muted'],
     'Style': ['vintage', 'minimalist', 'earthy', 'sophisticated'],
     'Feel': ['warm', 'cool', 'dark', 'light']
   }
-  
+
   const handleTermClick = (term: string) => {
     if (selectedTerms.includes(term)) {
       // Remove term if already selected
@@ -28,18 +32,18 @@ const SemanticInput = () => {
       }
     }
   }
-  
+
   const handleClearClick = () => {
     setSelectedTerms([])
   }
-  
+
   const handleGenerateClick = () => {
     generatePalette({
       semanticTerms: selectedTerms,
       preserveLocked: true
     })
   }
-  
+
   const renderTerms = (category: string, terms: string[]) => {
     return (
       <div className="term-category" key={category}>
@@ -90,19 +94,25 @@ const SemanticInput = () => {
           </button>
         )}
       </div>
-      
+
       <div className="term-categories">
         {Object.entries(termCategories).map(([category, terms]) => 
           renderTerms(category, terms)
         )}
       </div>
-      
+
       <button
         className="generate-button"
         onClick={handleGenerateClick}
         disabled={selectedTerms.length === 0}
       >
         Generate from Terms
+      </button>
+      <button 
+        className="generate-button"
+        onClick={onClose}
+      >
+        Close
       </button>
     </div>
   )
