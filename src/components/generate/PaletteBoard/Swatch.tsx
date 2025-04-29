@@ -43,7 +43,10 @@ const Swatch: React.FC<SwatchProps> = ({ color, size }) => {
   return (
     <div 
       className={`color-swatch ${size} ${color.locked ? 'locked' : ''}`} 
-      style={{ backgroundColor: color.hex }}
+      style={{ 
+        backgroundColor: color.hex,
+        borderRadius: 0 // Explicitly set inline style as well
+      }}
     >
       <div className="swatch-toolbar">
         <button 

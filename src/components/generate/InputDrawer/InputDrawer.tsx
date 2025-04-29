@@ -1,51 +1,31 @@
-import { useState } from 'react'
-import SeedPicker from './SeedPicker'
-import SemanticInput from './SemanticInput'
-import ImageUpload from './ImageUpload'
-import './InputDrawer.css'
+import React, { useState } from 'react';
+import SeedPicker from './SeedPicker';
+import SemanticInput from './SemanticInput';
+import ImageUpload from './ImageUpload';
+import './InputDrawer.css';
 
-type InputTab = 'seed' | 'semantic' | 'image'
+type TabType = 'seed' | 'semantic' | 'image';
 
 interface InputDrawerProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void; // We'll keep this prop for API consistency but won't use it
 }
 
-const InputDrawer = ({ isOpen, onClose }: InputDrawerProps) => {
-  const [activeTab, setActiveTab] = useState<InputTab>('seed')
-
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case 'seed':
-        return <SeedPicker />
-      case 'semantic':
-        return <SemanticInput />
-      case 'image':
-        return <ImageUpload />
-      default:
-        return <SeedPicker />
-    }
-  }
+const InputDrawer: React.FC<InputDrawerProps> = ({ isOpen }) => {
+  const [activeTab, setActiveTab] = useState<TabType>('seed');
 
   return (
-    <div className={`input-drawer ${isOpen ? 'open' : ''}`}>
-      <div className="drawer-header">
-        <h2>Input Methods</h2>
-        <button 
-          className="close-button" 
-          onClick={onClose}
-          aria-label="Close drawer"
-        >
-          ×
-        </button>
+    <div className={`input-panel ${isOpen ? 'visible' : ''}`}>
+      <div className="panel-header">
+        <h2>Advanced Options</h2>
       </div>
-
-      <div className="drawer-tabs">
+      
+      <div className="panel-tabs">
         <button 
           className={`tab-button ${activeTab === 'seed' ? 'active' : ''}`}
           onClick={() => setActiveTab('seed')}
         >
-          Color Picker
+          Seed Color
         </button>
         <button 
           className={`tab-button ${activeTab === 'semantic' ? 'active' : ''}`}
@@ -60,12 +40,14 @@ const InputDrawer = ({ isOpen, onClose }: InputDrawerProps) => {
           Image Upload
         </button>
       </div>
-
-      <div className="drawer-content">
-        {renderTabContent()}
+      
+      <div className="panel-content">
+        {activeTab === 'seed' && <SeedPicker onClose={() => {}} />}
+        {activeTab === 'semantic' && <SemanticInput onClose={() => {}} />}
+        {activeTab === 'image' && <ImageUpload onClose={() => {}} />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default InputDrawer
+export default InputDrawer;

@@ -1,18 +1,17 @@
 .swatch-grid {
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 0; /* Remove gaps between swatches */
   margin-bottom: 24px;
-  width: 100%;
-  overflow-x: auto;
-  padding: 16px 0;
+  width: 100%; /* Take full width */
+  border-radius: 12px; /* Apply rounded corners to the entire container */
 }
 
-/* Each swatch takes equal space */
+/* Each swatch takes equal space with no gaps */
 .swatch-grid > * {
-  flex: 1;
-  min-width: 160px;
-  max-width: 240px;
+  flex: 1 1 0; /* Grow equally, shrink equally, base width 0 */
+  min-width: 0; /* Allow swatches to shrink below min-width */
+  max-width: none; /* Remove max-width to fill entire container */
 }
 
 /* Empty state styling */

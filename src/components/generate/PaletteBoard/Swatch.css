@@ -1,6 +1,6 @@
 .color-swatch {
   position: relative;
-  border-radius: 12px;
+  border-radius: 0 !important; /* Force no border radius and override any other styles */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,6 +10,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 260px;
   padding: 12px;
+  width: 100%; /* Ensure full width */
 }
 
 /* Size variants - keeping consistent height now */
@@ -19,15 +20,16 @@
   height: 260px;
 }
 
-/* Hover effects */
+/* Hover effects - soften for better visual with no gaps */
 .color-swatch:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1; /* Bring hovered swatch to front */
 }
 
-/* Locked state */
+/* Modify locked state styling to work without individual borders */
 .color-swatch.locked {
-  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.5);
 }
 
 .color-swatch.locked::after {
@@ -38,8 +40,19 @@
   right: 0;
   bottom: 0;
   border: 2px dashed rgba(255, 255, 255, 0.7);
-  border-radius: 8px;
+  border-radius: 0; /* Removing border radius here too */
   pointer-events: none;
+}
+
+/* Apply first-child and last-child styles for rounded corners */
+.swatch-grid > div:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.swatch-grid > div:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 /* Toolbar at the top of swatch */
@@ -50,6 +63,7 @@
   display: flex;
   justify-content: flex-end;
   z-index: 10;
+  border-radius: 0; /* Reset any potential border-radius that might be getting applied */
 }
 
 .lock-button {
@@ -79,12 +93,13 @@
   flex-direction: column;
   gap: 8px;
   margin-top: auto;
+  border-radius: 0; /* Reset any potential border-radius that might be getting applied */
 }
 
 .color-pill {
   display: inline-block;
   padding: 6px 12px;
-  border-radius: 16px;
+  border-radius: 10px;
   font-family: monospace;
   font-size: 13px;
   margin: 2px 0;
